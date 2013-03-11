@@ -1,0 +1,23 @@
+#N canvas 425 362 609 411 10;
+#X obj 118 35 inlet;
+#X obj 118 59 bang;
+#X obj 37 34 initbang;
+#X obj 37 176 timer;
+#X obj 37 230 expr ($f2 / $f1) * 1000;
+#X obj 37 276 outlet;
+#X obj 118 173 counter;
+#X obj 37 107 t b b;
+#X obj 37 68 metro 1000;
+#X text 226 40 rate measurement. send anything to the inlet. the outlet
+reports the rate (#messages per second sent to the inlet) once a second.
+;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 2 0 8 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 6 0 4 1;
+#X connect 7 0 6 3;
+#X connect 7 0 3 0;
+#X connect 7 1 3 1;
+#X connect 8 0 7 0;

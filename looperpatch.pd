@@ -1,0 +1,314 @@
+#N canvas 0 79 1680 971 10;
+#X obj 25 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 94 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 52 149 timer;
+#X obj 25 100 spigot 1;
+#X floatatom 63 174 10 0 0 0 - - -;
+#X floatatom 146 291 10 0 0 0 - - -;
+#X obj 145 249 / 1000;
+#X obj 52 224 metro;
+#X obj 95 342 f \$1;
+#X obj 52 391 pack f f;
+#X obj 52 341 f \$1;
+#X obj 402 181 bng 30 250 50 0 empty empty empty 17 7 0 10 -159808
+-1 -1;
+#X obj 92 75 r dub;
+#X obj 93 101 spigot 1;
+#X obj 188 248 samplerate~;
+#X obj 188 227 loadbang;
+#X obj 145 272 * 48000;
+#X floatatom 199 272 5 0 0 0 - - -;
+#X obj 51 434 vline~;
+#X obj 51 457 s~ vline;
+#X obj 70 57 int;
+#X obj 326 143 tgl 70 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X msg 95 145 0;
+#X obj 467 181 bng 30 250 50 0 empty empty empty 17 7 0 10 -258113
+-1 -1;
+#X obj 434 181 bng 30 250 50 0 empty empty empty 17 7 0 10 -4034 -1
+-1;
+#X obj 468 149 bng 30 250 50 0 empty empty empty 17 7 0 10 -258113
+-1 -1;
+#X obj 435 149 bng 30 250 50 0 empty empty empty 17 7 0 10 -260097
+-1 -1;
+#X obj 36 249 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 167 330 s loopsize;
+#X obj 118 127 s stopr;
+#X floatatom 1 200 5 0 0 0 - - -;
+#X obj 4 148 / 1000;
+#X obj 3 178 * 120;
+#X floatatom 102 362 10 0 0 0 - - -;
+#X floatatom 54 362 5 0 0 0 - - -;
+#X obj -18 361 s readindex;
+#X obj -34 413 s packedindex;
+#X obj 52 249 s metrobang;
+#X msg 51 413 0 \, \$2 \$1;
+#X obj 52 300 t b b;
+#X obj 52 198 t b f f f;
+#X obj 843 668 poke~ \$0-looperleft;
+#X obj 843 384 tabread~ \$0-looperleft;
+#N canvas 756 298 381 325 limiter-for-two-channels 0;
+#X obj 24 22 inlet~;
+#X obj 121 21 loadbang;
+#X obj 24 60 z~ 64;
+#X obj 24 169 *~;
+#X obj 24 200 outlet~;
+#X obj 121 113 zexy/limiter~;
+#X msg 154 62 limit 100;
+#X connect 0 0 2 0;
+#X connect 0 0 5 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 3 1;
+#X restore 843 535 pd limiter-for-two-channels;
+#X obj 656 178 table \$0-looperleft 2.82e+06;
+#X obj 844 451 *~;
+#X obj 658 545 hsl 128 25 0 1 0 1 \$0-feedback \$0-feedbackctrl feedback
+20 12 0 10 -228856 -260097 -1 12700 0;
+#X obj 658 575 hsl 128 25 0 1 0 1 \$0-outlevel \$0-outlevelin outlevel
+20 12 0 10 -228856 -260097 -1 12700 1;
+#X obj 673 435 bng 50 250 50 0 empty empty empty 17 7 0 10 -228856
+-260097 -1;
+#N canvas 507 427 187 154 feedbacklevel 0;
+#X obj 27 81 line~;
+#X obj 27 109 outlet~;
+#X msg 27 57 \$1 500;
+#X text 25 131 feedback level;
+#X obj 95 109 outlet;
+#X obj 29 26 r \$0-feedback;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 5 0 2 0;
+#X connect 5 0 4 0;
+#X restore 858 410 pd feedbacklevel;
+#X floatatom 952 438 5 0 0 0 - - -;
+#N canvas 242 208 1024 716 outlevel 0;
+#X obj 27 101 line~;
+#X obj 27 129 outlet~;
+#X msg 27 77 \$1 500;
+#X obj 82 78 outlet;
+#X obj 27 24 r \$0-outlevel;
+#X text 25 151 output level;
+#X obj 112 25 r \$0-mute;
+#X obj 131 78 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 27 51 f;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 4 0 8 0;
+#X connect 6 0 8 0;
+#X connect 8 0 2 0;
+#X connect 8 0 3 0;
+#X connect 8 0 7 0;
+#X restore 875 577 pd outlevel;
+#X floatatom 939 598 5 0 0 0 - - -;
+#X obj 685 522 s \$0-looperleft;
+#X msg 673 497 const 0;
+#X text 725 452 clear loop;
+#X obj 853 505 hip~ 5;
+#N canvas 573 177 391 247 more-info 0;
+#X text 14 204 This patch uses [count~] and [poke~] from cyclone \,
+[limiter~] from zexy.;
+#X text 16 72 With feedback setting at max \, it is a looper. With
+lower feedback settings \, the loop content will fade away.;
+#X text 15 115 The read index is one sample ahead of the write index
+\, and wrapped within the loop size.;
+#X text 14 17 Elementary looping delay with sound on sound. A similar
+thing can be done with [delwrite~] and [delread~] or [vd~] \, but [delwrite~]
+lacks the option to clear the delay buffer.;
+#X text 16 153 Loop size could be up to 2^23-1 samples theoretically.
+Beyond that size \, indexing will loose the required precision.;
+#X obj 325 217 mux~;
+#X restore -1 542 pd more-info;
+#X obj 764 103 r \$0-start;
+#X obj 660 101 r clear;
+#X obj 659 139 s \$0-clear;
+#X msg 764 125 1;
+#X obj 764 146 s \$0-mute;
+#X obj 860 614 *~;
+#X obj 897 213 r~ vline;
+#X obj 708 100 r pgm;
+#X obj 660 121 spigot;
+#X obj 727 118 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 673 411 r clear;
+#X obj 1062 541 s \$0-feedbackctrl;
+#X obj 1062 483 inlet feedback;
+#X floatatom 1005 498 5 0 0 0 - - -;
+#X obj 1062 506 / 100;
+#X obj 731 409 inlet clear;
+#X obj 1077 582 outlet feedback;
+#X floatatom 1053 449 5 0 0 0 - - -;
+#X obj 940 151 knob 32 32 0 0.7 0 0 empty empty empty 0 -8 0 8 -4034
+-4034 -1 0 1;
+#X obj 937 123 inlet vol;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-viewer 100 float 0;
+#X coords 0 -1 99 1 200 200 1 0 0;
+#X restore 1082 243 graph;
+#X obj 1100 670 tabwrite~ \$0-viewer;
+#X obj 1104 624 loadbang;
+#X obj 1102 648 metro 50;
+#N canvas 32 320 385 285 readindex 0;
+#X obj 96 112 /;
+#X msg 96 85 1;
+#X obj 16 129 *~ 1;
+#X obj 16 154 wrap~;
+#X obj 96 61 t b f;
+#X obj 16 182 *~ 1;
+#X obj 16 13 inlet~;
+#X obj 16 212 outlet~;
+#X text 15 236 read pointer is one sample ahead of write pointer \,
+but must be wrapped around loop length;
+#X obj 96 37 int;
+#X obj 16 69 +~ 1;
+#X floatatom 151 44 15 0 0 0 - - -;
+#X obj 96 13 inlet loopsize;
+#X connect 0 0 2 1;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 1 0;
+#X connect 4 1 0 1;
+#X connect 5 0 7 0;
+#X connect 6 0 10 0;
+#X connect 9 0 4 0;
+#X connect 9 0 5 1;
+#X connect 10 0 2 0;
+#X connect 12 0 9 0;
+#X connect 12 0 11 0;
+#X restore 940 312 pd readindex;
+#X obj 1018 273 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1073 612 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 1048 205 r metrobang;
+#X obj 323 225 tgl 70 0 empty empty empty 17 7 0 10 -4034 -1 -1 0 1
+;
+#X obj 23 71 r att;
+#X text 319 252 rec/overdub;
+#X obj 313 340 sel 1 0;
+#X text 329 171 Rec enable;
+#X obj 312 367 s att;
+#X obj 391 365 s dub;
+#X text -9 522 (Original patch by Katja Vetter dec 2010);
+#X text 326 123 clicking the yellow toggle enables looping;
+#X text 400 242 clicking the gree toggle once \, records the loop;
+#X text 399 262 clicking it again stops recording and loops it from
+that point;
+#X text 402 295 clicking again and again will add to the already playing
+buffer until the yellow button is clicked again \, clearing the buffer
+and setting the loop length to 30 seconds;
+#X obj 856 639 dac~;
+#X msg 378 511 30000;
+#X text 465 365 this is just the patching for the 1st loop which determines
+the loop length;
+#X obj 457 783 *~ 0;
+#X obj 545 605 vsl 15 128 0 3000 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 8700 1;
+#X obj 456 741 osc~ 400;
+#X obj 597 601 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X text 597 746 vol;
+#X text 535 741 note;
+#X obj 457 707 sig~;
+#X msg 460 527 0;
+#X obj 446 489 sel 0 1;
+#X connect 0 0 2 0;
+#X connect 0 0 7 0;
+#X connect 1 0 2 1;
+#X connect 1 0 22 0;
+#X connect 1 0 29 0;
+#X connect 2 0 31 0;
+#X connect 2 0 40 0;
+#X connect 2 0 4 0;
+#X connect 3 0 0 0;
+#X connect 3 0 26 0;
+#X connect 5 0 8 0;
+#X connect 6 0 16 0;
+#X connect 7 0 27 0;
+#X connect 7 0 11 0;
+#X connect 7 0 37 0;
+#X connect 7 0 39 0;
+#X connect 8 0 9 1;
+#X connect 8 0 33 0;
+#X connect 8 0 28 0;
+#X connect 9 0 38 0;
+#X connect 9 0 36 0;
+#X connect 10 0 9 0;
+#X connect 10 0 34 0;
+#X connect 10 0 35 0;
+#X connect 12 0 23 0;
+#X connect 12 0 13 0;
+#X connect 13 0 1 0;
+#X connect 13 0 25 0;
+#X connect 14 0 16 1;
+#X connect 14 0 17 0;
+#X connect 15 0 14 0;
+#X connect 16 0 5 0;
+#X connect 18 0 19 0;
+#X connect 20 0 3 1;
+#X connect 20 0 13 1;
+#X connect 21 0 20 0;
+#X connect 21 0 99 0;
+#X connect 21 0 109 0;
+#X connect 22 0 21 0;
+#X connect 31 0 32 0;
+#X connect 32 0 30 0;
+#X connect 38 0 18 0;
+#X connect 39 0 10 0;
+#X connect 39 1 8 0;
+#X connect 40 0 7 0;
+#X connect 40 1 7 1;
+#X connect 40 2 6 0;
+#X connect 40 3 10 0;
+#X connect 42 0 45 0;
+#X connect 43 0 63 0;
+#X connect 43 0 41 0;
+#X connect 45 0 43 0;
+#X connect 48 0 54 0;
+#X connect 49 0 45 1;
+#X connect 49 1 50 0;
+#X connect 51 0 63 1;
+#X connect 51 1 52 0;
+#X connect 54 0 53 0;
+#X connect 56 0 43 0;
+#X connect 58 0 61 0;
+#X connect 59 0 66 0;
+#X connect 61 0 62 0;
+#X connect 63 0 98 0;
+#X connect 63 0 79 0;
+#X connect 64 0 82 0;
+#X connect 64 0 41 1;
+#X connect 64 0 42 0;
+#X connect 65 0 66 1;
+#X connect 65 0 67 0;
+#X connect 66 0 60 0;
+#X connect 68 0 48 0;
+#X connect 70 0 71 0;
+#X connect 70 0 72 0;
+#X connect 72 0 69 0;
+#X connect 72 0 74 0;
+#X connect 73 0 48 0;
+#X connect 75 0 72 0;
+#X connect 77 0 76 0;
+#X connect 80 0 81 0;
+#X connect 81 0 79 0;
+#X connect 84 0 81 0;
+#X connect 86 0 89 0;
+#X connect 87 0 3 0;
+#X connect 87 0 24 0;
+#X connect 89 0 91 0;
+#X connect 89 1 92 0;
+#X connect 99 0 40 0;
+#X connect 101 0 56 0;
+#X connect 102 0 107 0;
+#X connect 103 0 101 0;
+#X connect 104 0 101 1;
+#X connect 107 0 103 0;
+#X connect 108 0 104 0;
+#X connect 109 0 108 0;

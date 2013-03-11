@@ -1,0 +1,47 @@
+#N canvas 0 0 450 548 10;
+#X floatatom 227 136 5 0 0 0 - - -;
+#X floatatom 225 159 5 0 0 0 - - -;
+#X floatatom 225 72 5 0 0 0 - - -;
+#X floatatom 227 183 5 0 0 0 - - -;
+#X floatatom 295 164 5 0 0 0 - - -;
+#X floatatom 104 142 5 0 0 0 - - -;
+#X obj 263 186 +;
+#X obj 263 210 f;
+#X text 500 20 centerer;
+#X obj 266 56 inlet axis;
+#X obj 366 58 inlet centerval;
+#X obj 103 103 knob 32 32 0 127 0 0 empty empty empty 0 -8 0 8 -262144
+-1 -1 1567 1;
+#X obj 109 109 knob 20 20 -5 5 0 0 empty empty empty 0 -8 0 8 -258113
+-1 -1 1900 1;
+#X text 17 24 this value will be the xlrmtr axis scaled to only be5-6
+degrees around the center value coming from the second inlet;
+#X text 363 75 this value will come from a gesture node value;
+#X obj 263 249 outlet;
+#X obj 204 252 / 100;
+#X floatatom 212 286 5 0 0 0 - - -;
+#X obj 265 78 / 100;
+#X obj 265 107 clip 0 1;
+#X floatatom 317 141 5 0 0 0 - - -;
+#X obj 263 137 - 0.5;
+#X obj 328 230 + 3;
+#X obj 263 162 * 6;
+#X connect 4 0 6 1;
+#X connect 6 0 7 0;
+#X connect 7 0 12 0;
+#X connect 7 0 16 0;
+#X connect 9 0 2 0;
+#X connect 9 0 18 0;
+#X connect 10 0 6 1;
+#X connect 10 0 11 0;
+#X connect 16 0 17 0;
+#X connect 16 0 5 0;
+#X connect 16 0 15 0;
+#X connect 18 0 0 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 19 0 21 0;
+#X connect 21 0 1 0;
+#X connect 21 0 23 0;
+#X connect 23 0 6 0;
+#X coords 0 -1 1 1 45 60 2 100 100;

@@ -1,0 +1,25 @@
+#N canvas 279 117 672 328 10;
+#X obj 56 42 adc~;
+#X obj 54 192 dac~;
+#X obj 48 71 recorder~ 1-table;
+#X obj 336 265 tabread4~ 1-table;
+#X obj 340 292 dac~;
+#X floatatom 337 149 10 0 0 0 - - -;
+#X obj 364 224 *~;
+#X obj 394 195 r 1-table_len;
+#X obj 337 171 phasor~ 0.5;
+#X text 245 35 2 wait a while \, then push play;
+#X text 245 51 3 overdub and/or punch if you want;
+#X text 245 8 1 (turn audio on) \, record something by toggling [rec]
+on and then off;
+#X text 245 67 4 notice that you can manipulate the table outside of
+the looper abstraction;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 3 0 4 1;
+#X connect 5 0 8 0;
+#X connect 6 0 3 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 0;

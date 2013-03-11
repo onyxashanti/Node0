@@ -1,0 +1,23 @@
+#N canvas 0 0 450 300 10;
+#X obj 79 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 3
+;
+#X obj 98 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 72 54 * 3;
+#X floatatom 37 61 5 0 0 0 - - -;
+#X floatatom 108 149 5 0 0 0 - - -;
+#X obj 69 13 inlet;
+#X obj 104 209 outlet;
+#X obj 183 78 r flash;
+#X msg 186 113 0;
+#X obj 52 91 threshold 3 2 1 2;
+#X connect 1 0 4 0;
+#X connect 1 0 6 0;
+#X connect 2 0 0 0;
+#X connect 2 0 3 0;
+#X connect 2 0 9 0;
+#X connect 5 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X connect 9 1 8 0;

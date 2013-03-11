@@ -1,0 +1,35 @@
+#N canvas 661 352 560 300 10;
+#X obj 169 50 spigot;
+#X obj 142 23 t f f;
+#X obj 142 -1 inlet node;
+#X obj 202 22 inlet layer;
+#X obj 142 47 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 102 102 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 166 113 outlet nodenumber;
+#X obj 301 7 inlet frange;
+#X obj 301 33 > 0.8;
+#X obj 189 79 spigot;
+#X obj 353 34 > 0.2;
+#X obj 350 76 outlet textlatch;
+#X msg 390 118 insert alarm sound;
+#X obj 130 82 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 312 68 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 0 0 9 0;
+#X connect 0 0 6 0;
+#X connect 1 0 4 0;
+#X connect 1 1 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 1;
+#X connect 7 0 8 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 1;
+#X connect 8 0 14 0;
+#X connect 9 0 5 0;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 13 0 6 0;
+#X coords 0 -1 1 1 20 20 1 100 100;

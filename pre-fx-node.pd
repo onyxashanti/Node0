@@ -1,0 +1,9 @@
+#N canvas 8 49 685 889 10;
+#X obj 112 106 inlet~;
+#X obj 308 453 outlet~;
+#X obj 271 270 g-delay;
+#X obj 305 379 g-flanger;
+#X connect 0 0 3 0;
+#X connect 0 0 1 0;
+#X connect 3 0 1 0;
+#X connect 3 1 1 0;

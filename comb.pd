@@ -1,0 +1,16 @@
+#N canvas 28 -17 1366 726 10;
+#X obj -1215 -604 inlet~;
+#X obj -1215 -579 vd~ \$0-comb \$1;
+#X obj -1215 -457 outlet~;
+#X obj -1121 -546 *~ \$2;
+#X obj -1168 -523 inlet~;
+#X obj -1122 -525 lop~ 3000;
+#X obj -1137 -494 +~;
+#X obj -1136 -473 delwrite~ \$0-comb 100;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 0 2 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 6 1;
+#X connect 6 0 7 0;

@@ -1,0 +1,37 @@
+#N canvas 888 624 620 300 10;
+#X obj 104 100 panner;
+#X obj 79 35 inlet~;
+#X obj 126 35 inlet chn_on;
+#X obj 93 192 outlet~;
+#X obj 143 192 outlet~;
+#X obj 196 194 outlet;
+#X obj 84 56 *~;
+#X obj 247 94 sig~;
+#X obj 248 119 lop~ 80;
+#X obj 240 193 outlet panlite;
+#X obj 211 16 inlet mutesig;
+#X obj 321 10 inlet volctrl;
+#X obj 304 71 /;
+#X floatatom 354 77 5 0 0 0 - - -;
+#X obj 319 46 t b f;
+#X obj 341 106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 150 62 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 0 0 3 0;
+#X connect 0 1 4 0;
+#X connect 0 2 5 0;
+#X connect 0 3 9 0;
+#X connect 1 0 6 0;
+#X connect 2 0 0 1;
+#X connect 2 0 16 0;
+#X connect 6 0 0 0;
+#X connect 7 0 8 0;
+#X connect 8 0 6 1;
+#X connect 10 0 12 0;
+#X connect 11 0 13 0;
+#X connect 11 0 14 0;
+#X connect 12 0 7 0;
+#X connect 14 0 12 0;
+#X connect 14 0 15 0;
+#X connect 14 1 12 1;

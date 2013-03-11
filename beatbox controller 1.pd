@@ -1,0 +1,3 @@
+#N canvas 0 0 928 660 10;
+#X obj 125 117 beatboxctrl1;
+#X obj 58 296 beatboxctrlgrid;

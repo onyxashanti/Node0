@@ -1,0 +1,288 @@
+#N canvas 452 126 320 443 10;
+#X obj 137 107 vsl 20 100 0 127 0 0 empty empty empty 0 -9 0 10 -4032
+-1 -1 0 1;
+#X obj 115 107 vsl 20 100 0 127 0 0 empty empty empty 0 -9 0 10 -159808
+-1 -1 0 1;
+#X text 100 224 Breath;
+#N canvas 540 570 821 444 lip 0;
+#X floatatom 147 75 5 0 0 0 - - -;
+#X floatatom 124 250 5 0 0 0 - - -;
+#X obj 148 274 ctlout 18;
+#X obj 124 -2 inlet;
+#X obj 124 36 * 256;
+#X obj 124 75 int;
+#X obj 170 304 s lip;
+#X obj 127 304 outlet;
+#X obj 158 250 r pgmout;
+#X obj 179 92 r xpitchswitch;
+#X obj 123 93 spigot;
+#X floatatom 167 93 1 0 0 0 - - -;
+#X obj 167 112 sel 0 1;
+#X msg 167 130 64;
+#X msg 196 130 64;
+#X text 267 93 Pitch Bend x-axis/switch;
+#X obj 124 230 int;
+#X floatatom 211 250 5 0 0 0 - - -;
+#X obj 124 55 + 10;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array pitchflatzone 127 float 1;
+#A 0 -1.02857 -0.999998 -0.957141 -0.949998 -0.928569 -0.914284 -0.899998
+-0.885712 -0.871427 -0.857141 -0.849998 -0.814284 -0.814284 -0.785713
+-0.785713 -0.771427 -0.72857 -0.699998 -0.671427 -0.585713 -0.571427
+-0.514285 -0.485713 -0.471428 -0.457142 -0.442856 -0.414285 -0.407142
+-0.371428 -0.342856 -0.328571 -0.299999 -0.271428 -0.242857 -0.171428
+-0.157143 -0.0714284 -0.0714284 -0.0571427 -0.0285714 -0.0428571 -0.0285714
+-0.0285714 -0.0142857 -0.0142857 0 0 0 0 0.0142857 0.0142857 0.0285714
+0.0285714 0.0357142 0.0428571 0.0428571 0.0428571 0.0428571 0.0571427
+0.0571427 0.0571427 0.0571427 0.0571427 0.0571427 0.0571427 0.0571427
+0.0571427 0.0571427 0.0571427 0.0571427 0.0571427 0.0571427 0.0571427
+0.0571427 0.0571427 0.0428571 0.0428571 0.0428571 0.0428571 0.0571427
+0.0642856 0.0714284 0.0785713 0.0857141 0.0999998 0.114285 0.114285
+0.128571 0.135714 0.142857 0.142857 0.157143 0.157143 0.157143 0.157143
+0.164285 0.171428 0.171428 0.185714 0.214285 0.214285 0.214285 0.242857
+0.249999 0.257142 0.271428 0.285714 0.292857 0.299999 0.342856 0.349999
+0.385713 0.392856 0.399999 0.442856 0.471428 0.499999 0.52857 0.557142
+0.599999 0.642856 0.72857 0.757141 0.799998 0.814284 0.842855 0.999998
+;
+#X coords 0 1 126 -1 200 140 1;
+#X restore 544 70 graph;
+#X obj 126 178 tabread pitchflatzone;
+#X floatatom 170 229 5 0 0 0 - - -;
+#X floatatom 200 162 5 0 0 0 - - -;
+#X obj 123 157 clip 10 127;
+#X obj 126 195 * 64;
+#X obj 126 212 + 48;
+#X connect 1 0 7 0;
+#X connect 1 0 2 0;
+#X connect 1 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 18 0;
+#X connect 5 0 0 0;
+#X connect 5 0 10 0;
+#X connect 8 0 2 2;
+#X connect 8 0 17 0;
+#X connect 9 0 11 0;
+#X connect 10 0 23 0;
+#X connect 11 0 10 1;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 12 1 14 0;
+#X connect 13 0 23 0;
+#X connect 14 0 23 0;
+#X connect 16 0 1 0;
+#X connect 18 0 5 0;
+#X connect 20 0 24 0;
+#X connect 22 0 20 0;
+#X connect 23 0 20 0;
+#X connect 24 0 25 0;
+#X connect 25 0 16 0;
+#X connect 25 0 21 0;
+#X restore 166 82 pd lip calibration;
+#N canvas 586 187 980 558 boehmsys 0;
+#X text -51 9 note number;
+#X text -137 27 breath;
+#X floatatom -74 201 5 0 0 0 - - -;
+#X floatatom -157 201 5 0 0 0 - - -;
+#X obj -65 170 f \$1;
+#X obj -132 53 > 0;
+#X obj -96 256 int;
+#X obj -157 339 pack f f;
+#X obj -132 170 sel 1 0;
+#X msg -74 345 \$1 0;
+#X obj -157 367 flush;
+#X obj -132 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj -99 366 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -111 226 delay;
+#X obj -112 311 moses 1;
+#N canvas 659 176 236 193 bk 0;
+#X obj 99 39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 3
+;
+#X obj 88 113 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+0.596351;
+#X obj 62 44 * 3;
+#X floatatom 27 51 5 0 0 0 - - -;
+#X obj 59 9 inlet;
+#X obj 91 164 outlet;
+#X obj 70 155 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 90 137 1;
+#X floatatom 38 119 5 0 0 0 - - -;
+#X obj 44 84 threshold 3 0 3 0;
+#X connect 1 0 7 0;
+#X connect 2 0 0 0;
+#X connect 2 0 3 0;
+#X connect 2 0 9 0;
+#X connect 4 0 2 0;
+#X connect 7 0 5 0;
+#X connect 9 0 1 0;
+#X connect 9 0 8 0;
+#X connect 9 1 1 0;
+#X restore -132 112 pd bk;
+#X obj 64 275 spigot;
+#X obj 61 296 average 2;
+#X floatatom 85 26 5 0 0 0 - - -;
+#X text 63 48 program change;
+#X floatatom 376 104 5 0 0 0 - - -;
+#X obj 34 65 pgmout;
+#X obj 289 153 +;
+#X obj 30 144 s pgm2chnl;
+#X obj -148 394 pack f f f;
+#X obj -153 424 sustain;
+#X obj 144 191 r cc2;
+#X obj 189 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+3;
+#X obj 144 212 select 1;
+#X obj 189 256 spigot;
+#X obj 304 104 r transpose;
+#X obj 189 281 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+2.5;
+#X obj 308 126 s transdisp;
+#X obj -100 426 s controllernotes;
+#X obj 60 232 s cc18 pgm2chnl;
+#X obj 32 28 r pgmout;
+#X obj 64 340 s cc2;
+#X obj -73 364 s noteoff;
+#X obj 289 197 r lje;
+#X obj 284 371 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 284 271 t b b;
+#X obj 284 310 f;
+#X obj 284 333 + 1;
+#X msg 311 293 1;
+#X obj 284 354 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 291 248 delay 50;
+#X obj 289 221 sel 1;
+#X obj 251 389 spigot;
+#X obj 251 409 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 166 27 sustain can be toggled on/off with the left-west joystick/position
+run the [flush]into [sustain] then [sustain] into [noteout] with the
+channel going there also. get rid of the [pack f f f ]. backup before
+doing any of this;
+#X obj 298 389 s toscsustain;
+#X obj 32 190 t f f f f f f f;
+#X obj -53 80 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj -13 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj -15 105 spigot;
+#X msg -53 104 100;
+#X obj -123 142 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 262 104 r note;
+#X obj -96 28 r breath;
+#X obj -150 448 pack f f f;
+#X obj -150 468 s mynotemsg;
+#X obj 59 319 print breath;
+#X obj -76 468 print note;
+#X obj -145 518 noteout;
+#X obj -151 493 unpack f f f;
+#X obj -53 54 == 6;
+#X obj 56 378 ctlout 2;
+#X obj 222 211 == 6;
+#X obj 100 72 sel 0 1;
+#X msg 145 103 0;
+#X msg 112 103 1;
+#X obj 108 134 spigot;
+#X connect 2 0 9 0;
+#X connect 2 0 53 0;
+#X connect 3 0 13 0;
+#X connect 3 0 7 0;
+#X connect 4 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 11 0;
+#X connect 6 0 14 0;
+#X connect 7 0 10 0;
+#X connect 8 0 3 0;
+#X connect 8 1 2 0;
+#X connect 9 0 12 0;
+#X connect 9 0 37 0;
+#X connect 10 0 24 0;
+#X connect 10 0 25 0;
+#X connect 10 1 24 1;
+#X connect 10 1 25 1;
+#X connect 11 0 47 0;
+#X connect 11 0 15 0;
+#X connect 11 0 16 1;
+#X connect 12 0 10 0;
+#X connect 13 0 6 0;
+#X connect 14 0 7 1;
+#X connect 14 1 7 1;
+#X connect 15 0 8 0;
+#X connect 15 0 56 0;
+#X connect 16 0 17 0;
+#X connect 17 0 36 0;
+#X connect 17 0 61 0;
+#X connect 22 0 4 0;
+#X connect 24 0 33 0;
+#X connect 25 0 59 0;
+#X connect 25 1 59 1;
+#X connect 26 0 28 0;
+#X connect 27 0 29 0;
+#X connect 28 1 27 0;
+#X connect 29 0 31 0;
+#X connect 30 0 20 0;
+#X connect 30 0 22 1;
+#X connect 30 0 32 0;
+#X connect 35 0 18 0;
+#X connect 35 0 21 0;
+#X connect 35 0 23 0;
+#X connect 35 0 51 0;
+#X connect 38 0 46 0;
+#X connect 39 0 47 1;
+#X connect 39 0 50 0;
+#X connect 40 0 41 0;
+#X connect 40 1 43 0;
+#X connect 41 0 42 0;
+#X connect 42 0 44 0;
+#X connect 43 0 41 1;
+#X connect 44 0 39 0;
+#X connect 45 0 40 0;
+#X connect 46 0 45 0;
+#X connect 47 0 48 0;
+#X connect 48 0 25 2;
+#X connect 51 2 34 0;
+#X connect 51 4 59 2;
+#X connect 51 5 67 0;
+#X connect 51 6 65 0;
+#X connect 52 0 8 0;
+#X connect 52 0 55 0;
+#X connect 52 0 54 1;
+#X connect 52 0 68 0;
+#X connect 53 0 54 0;
+#X connect 54 0 55 0;
+#X connect 55 0 6 0;
+#X connect 57 0 22 0;
+#X connect 58 0 16 0;
+#X connect 58 0 6 0;
+#X connect 58 0 66 0;
+#X connect 58 0 71 0;
+#X connect 59 0 60 0;
+#X connect 59 0 62 0;
+#X connect 59 0 64 0;
+#X connect 64 0 63 0;
+#X connect 64 1 63 1;
+#X connect 64 2 63 2;
+#X connect 65 0 52 0;
+#X connect 67 0 29 1;
+#X connect 68 0 70 0;
+#X connect 68 1 69 0;
+#X connect 69 0 71 1;
+#X connect 70 0 71 1;
+#X connect 71 0 5 0;
+#X restore 103 61 pd boehmsys;
+#X floatatom 136 211 5 0 0 0 - - -;
+#X floatatom 102 211 5 0 0 0 - - -;
+#X text 146 224 Lip;
+#X text 156 147 ----;
+#X obj 42 66 r breath;
+#X obj 111 83 M1bjcmouth;
+#X connect 0 0 5 0;
+#X connect 1 0 6 0;
+#X connect 3 0 0 0;
+#X connect 9 0 1 0;
+#X connect 10 0 3 0;
+#X coords 0 -1 1 1 70 140 2 100 100;
